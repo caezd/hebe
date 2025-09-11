@@ -1,0 +1,79 @@
+.cell {
+    padding: 24px;
+
+    &--span-2 {
+        grid-column: span 2;
+    }
+    &--span-3 {
+        grid-column: span 3;
+    }
+    &--span-4 {
+        grid-column: span 4;
+    }
+
+    &--aspect-square {
+        aspect-ratio: 1 / 1;
+    }
+    &-no-padding {
+        padding: 0;
+    }
+}
+
+.grid {
+    display: grid;
+    &.cell {
+        padding: 0;
+    }
+    &--col-auto {
+        grid-template-rows: 1fr;
+        grid-auto-flow: column;
+    }
+    &--justify-end {
+        justify-content: flex-end;
+    }
+    &--golden {
+        grid-template-columns: 61.8% 9.02% 5.58% 23.6%;
+    }
+    &--ratio {
+        grid-template-columns: 61.8% 38.2%;
+    }
+    &--ratioReversed {
+        grid-template-columns: 38.2% 61.8%;
+    }
+    &--splitHalf {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.gridLines {
+    position: relative;
+}
+
+.colLayout {
+    --columnRowGap: var(--rowGapLarge);
+    display: grid;
+    row-gap: var(--columnRowGap);
+    align-items: flex-start;
+}
+
+.grid-content {
+    display: grid;
+    row-gap: 1.5rem;
+    grid-template-columns:
+        [full-width-start] var(--columnPaddingNormal)
+        [breakout-start] var(--columnPaddingLarge, --columnPaddingNormal)
+        [content-start] 1fr [content-end]
+        var(--columnPaddingLarge, --columnPaddingNormal) [breakout-end]
+        var(--columnPaddingNormal) [full-width-end];
+    & > * {
+        grid-column: content;
+    }
+
+    & > .breakout {
+        grid-column: breakout;
+    }
+
+    & > .full-width {
+        grid-column: full-width;
+    }
+}

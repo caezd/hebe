@@ -1,0 +1,173 @@
+.title {
+    position: relative;
+
+    font-size: 5rem;
+
+    &:before {
+        content: attr(data-text);
+        position: absolute;
+        text-shadow: 0 0 1px #889ce0;
+        -webkit-text-fill-color: transparent;
+        left: -0.04em;
+        bottom: -0.06em;
+    }
+}
+
+.title-text {
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    text-anchor: middle;
+    font-family: "Arial Black";
+    fill: var(--colorPurple);
+}
+.stroke-text {
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: "Arial Black";
+    text-align: center;
+    text-anchor: middle;
+    stroke: var(--colorPurple);
+    stroke-width: 0.009em;
+    fill: none;
+    transform-origin: 50% 50%;
+    transform: translate(-0.06em, 0.08em);
+}
+
+.text-glitch {
+    color: white;
+
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    &:before,
+    &:after {
+        content: attr(data-text);
+        position: absolute;
+        z-index: -1;
+        white-space: nowrap;
+    }
+    &:before {
+        color: cyan;
+        top: 0;
+        left: -0.03em;
+    }
+    &:after {
+        color: magenta;
+        top: -0.03em;
+        left: 0.03em;
+    }
+}
+
+.copy {
+    --rowGap: 24px;
+    --headerMaxWidth: var(--copyMaxWidth);
+    --bodyMaxWidth: var(--copyMaxWidth);
+    --footerRowGap: var(--rowGap);
+    --ctaSpacing: 16px;
+    --titleFont: var(--titleWeight) var(--titleFontSize) / var(--titleLineHeight) var(--titleFontFamily);
+    --footerGap: "";
+    --bodyFont: 400 var(--bodyFontSize, 18px) / var(--bodyLineHeight, 1.555555556) var(--fontFamily);
+    --titleLineHeight: 1.04;
+    --titleFontMin: 40;
+    --titleFontMax: 68;
+    --titleFontSize: calc(
+        var(--titleFontMin) * 1px + (var(--titleFontMax) - var(--titleFontMin)) *
+            (var(--windowWidth) - var(--viewportMin) * 1px) / (var(--viewportMax) - var(--viewportMin))
+    );
+    @media (min-width: 600px) {
+        --headerPaddingRight: var(--columnPaddingNone);
+        --titleFontMin: 60;
+        --titleFontMax: 94;
+        --viewportMin: var(--viewportWidthMedium);
+        --viewportMax: var(--viewportWidthLarge);
+    }
+    @media (min-width: 1112px) {
+        --titleFontSize: 72px;
+    }
+    @media (min-width: 600px) {
+        --titleFontMin: 36;
+        --titleFontMax: 72;
+    }
+    letter-spacing: 0.2px;
+
+    &--variantSection {
+        --titleFontSize: 34px;
+        --titleLineHeight: 1.294117647;
+        --titleLetterSpacing: -0.1px;
+        @media (min-width: 1112px) {
+            --titleFontSize: 38px;
+            --titleLineHeight: 1.263157895;
+            --titleLetterSpacing: -0.2px;
+        }
+    }
+
+    &--variantCategory {
+        height: var(--trackHeight);
+        overflow: hidden;
+        .copy__body {
+            overflow: auto;
+        }
+    }
+
+    &--variantSection,
+    &--variantSubsection {
+        --paragraphGap: 20px;
+    }
+    &,
+    &__header {
+        display: grid;
+        row-gap: var(--rowGap);
+    }
+    &__header {
+        position: relative;
+        max-width: var(--headerMaxWidth);
+    }
+    &__title {
+        position: relative;
+        font: var(--titleFont);
+        color: var(--titleColor);
+        letter-spacing: var(--titleLetterSpacing, inherit);
+    }
+    &__caption {
+    }
+    &__body {
+        font: var(--bodyFont);
+        color: var(--textColor);
+        max-width: var(--bodyMaxWidth);
+    }
+}
+
+.linkStriked {
+    position: relative;
+    display: inline-block;
+    color: rgb(146, 146, 153);
+    transition: color 0.2s ease-out 0s;
+    &:after {
+        content: "";
+        width: calc(100% + 10px);
+        height: 2px;
+        display: block;
+        position: absolute;
+        top: calc(50% + 2px);
+        background: var(--titleColor);
+        transform-origin: left center;
+        transform: translate(calc(100% + 20px), -50%) scaleX(0);
+        transition: transform 0.3s ease-out 0s;
+    }
+    &.big {
+        &:after {
+            height: 5px;
+            top: 50%;
+            transform: translate(calc(100% + 20px), -50%) scaleX(0);
+        }
+    }
+    &:hover {
+        color: var(--titleColor);
+        &:after {
+            transform: translate(-5px, -50%) scaleX(1);
+        }
+    }
+}

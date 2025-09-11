@@ -1,0 +1,33 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    padding: 0 24px;
+    height: auto;
+    min-height: 32px;
+    cursor: pointer;
+    &--submit {
+        background-color: var(--colorYellow);
+        &:before {
+            position: absolute;
+            content: "";
+            pointer-events: none;
+            transition: transform 0.1s linear;
+            transform-origin: top right;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(calc(-50% + 13.5px)) skewX(-25.8deg);
+            z-index: -1;
+            background: linear-gradient(180deg, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 100%, 0));
+        }
+        &:hover {
+            &:before {
+                transform: translateX(calc(-20%)) skewX(-25.8deg);
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+.faq {
+    &__nav {
+        margin-left: auto;
+    }
+    &__tab {
+        font-size: 1.1em;
+        text-align: center;
+        display: flex;
+        padding: 24px;
+        flex-direction: column;
+        position: relative;
+        z-index: 0;
+        transition: 0.3s 0.2s var(--cubicEase) color;
+        &-slider {
+            background-color: var(--colorPurple);
+            position: absolute;
+            display: block;
+            height: 100%;
+            aspect-ratio: 1/1;
+            opacity: 0;
+            z-index: -1;
+            transition: 0.3s 0.2s var(--cubicEase) opacity;
+            &:before {
+                content: "";
+                width: 100%;
+                padding-bottom: 100%;
+            }
+            &.visible {
+                opacity: 1;
+            }
+        }
+        &-number {
+            font-size: 4em;
+            font-family: "Wire One";
+            color: var(--titleColor);
+            display: block;
+        }
+        &.active {
+            color: var(--titleColor);
+            transition: 0.3s 0s var(--cubicEase) color;
+        }
+    }
+    &__container {
+        overflow: hidden;
+        transition: height var(--cubicEase) 0.5s;
+    }
+    &__scroll {
+        block-size: 100%;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        transition: transform var(--cubicEase) 0.5s;
+        article {
+            overflow: hidden;
+            block-size: 100%;
+            > .content {
+                padding: 24px;
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "hebe",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "build": "rollup -c",
+        "dev": "concurrently -k \"rollup -c -w\" \"http-server dist -p 8080 -c-1 --cors\"",
+        "serve": "http-server dist -p 8080 -c-1 --cors",
+        "clean": "rimraf dist"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.0",
+        "@rollup/plugin-node-resolve": "^15.2.0",
+        "@rollup/plugin-terser": "^0.4.4",
+        "concurrently": "^9.0.0",
+        "http-server": "^14.1.1",
+        "rimraf": "^6.0.1",
+        "rollup": "^4.18.0",
+        "rollup-plugin-css-only": "^4.5.2"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@mapbox/simplespec-to-gl-style": "^0.4.0",
+        "@poumon/tyme": "^1.0.1"
+    }
+}

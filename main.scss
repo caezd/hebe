@@ -1,0 +1,27 @@
+// fonts
+@import url("https://fonts.googleapis.com/css2?family=Arimo&family=Inconsolata&family=Montserrat:wght@400;500;900&family=Rajdhani:wght@400;500;600;700&family=Wire+One&display=swap");
+
+// base
+@import "1-base/mixins";
+@import "1-base/variables";
+@import "1-base/reset";
+
+@import "2-components/cursor";
+@import "2-components/layout";
+@import "2-components/switcheroo";
+@import "2-components/toolbar";
+@import "2-components/aside";
+@import "2-components/header";
+@import "2-components/footer";
+@import "2-components/text";
+@import "2-components/grid";
+@import "2-components/buttons";
+@import "2-components/borders";
+@import "2-components/breadcrumbs";
+
+@import "3-pages/home";
+@import "3-pages/faq";
+@import "3-pages/forum";
+@import "3-pages/editor";
+@import "3-pages/register";
+@import "3-pages/subjects";

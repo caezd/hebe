@@ -1,0 +1,114 @@
+html {
+    --cardShadowXSmall: 0 2px 5px -1px rgba(50, 50, 93, 0.25),
+        0 1px 3px -1px rgba(0, 0, 0, 0.3);
+    --cardShadowSmall: 0 6px 12px -2px rgba(50, 50, 93, 0.25),
+        0 3px 7px -3px rgba(0, 0, 0, 0.3);
+    --cardShadowMedium: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+        0 8px 16px -8px rgba(0, 0, 0, 0.3);
+    --cardShadowLarge: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+        0 18px 36px -18px rgba(0, 0, 0, 0.3);
+    --cardShadowLargeInset: inset 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+        inset 0 18px 36px -18px rgba(0, 0, 0, 0.3);
+    --cardShadowXLarge: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
+        0 30px 60px -30px rgba(0, 0, 0, 0.3);
+    --cardShadowXSMallMargin: 2px;
+    --cardShadowSmallMargin: 8px;
+    --cardShadowMediumMargin: 16px;
+    --cardShadowLargeMargin: 32px;
+    --cardShadowXLargeMargin: 48px;
+
+    --layoutPadding: 24px;
+    --layoutPaddingLarge: 48px;
+    --layoutWidth: calc(var(--windowWidth) - var(--gutterWidth) * 2);
+    --layoutWidthMax: 1080px;
+
+    --windowWidth: calc(100vw - var(--scrollbarWidth));
+    --viewportWidthSmall: 375;
+    --viewportWidthMedium: 600;
+    --viewportWidthLarge: 1112;
+
+    --scrollbarWidth: 17px;
+    --windowWidth: calc(100vw - var(--scrollbarWidth));
+
+    --colorSeparator: #242427;
+    --divider: 1px solid var(--colorSeparator);
+
+    /* colors */
+    --colorBackground: #171719;
+    --colorBackgroundAlt: rgb(38, 38, 41);
+    --colorText: rgb(98, 98, 102);
+    --colorPurple: #a080f9;
+    --colorGreen: #6bdc8e;
+    --colorYellow: #fae156; //#ffe266;
+
+    --colorDjinn: #ef5167; //#ff6c8c;
+    --colorHuman: #7188ff; //#73a9ff;
+
+    --titleColor: rgb(242, 242, 250);
+    --colorTitle: var(--titleColor);
+
+    /* transitions */
+    --cubicEase: cubic-bezier(0.4, 0, 0.2, 1);
+    --transitionEnter: 0.4s var(--cubicEase);
+    --transitionExit: 0.2s var(--cubicEase);
+
+    /* */
+    --layoutWidthMax: 1080px;
+    --columnMaxWidth: calc(var(--layoutWidthMax) * 0.25);
+    --columnCountMax: 4;
+    --columnPaddingNone: 0;
+    --columnPaddingSmall: 8px;
+    --columnPaddingNormal: 16px;
+    --copyMaxWidth: calc(var(--columnMaxWidth) * 3);
+    --rowGapNormal: 8px;
+    --rowGapMedium: 24px;
+
+    --fontFamily: "Montserrat";
+    --narrowFontFamily: "Wire One";
+    --titleFontFamily: "Rajdhani";
+    --fontWeightNormal: 400;
+    --fontWeightMedium: 500;
+    --fontWeightBold: 600;
+    --titleWeight: var(--fontWeightBold);
+
+    @media (min-width: 600px) {
+        --columnPaddingMedium: 32px;
+        --columnPaddingLarge: 64px;
+        --columnPaddingXLarge: 64px;
+        --columnCountMax: 2;
+    }
+
+    @media (min-width: 900px) {
+        --columnPaddingXLarge: 112px;
+        --columnCountMax: 4;
+    }
+
+    --registerGroupColor: var(--colorBackground);
+    --registerGroupScale: 0;
+    --registerGroupX: 0;
+    --registerGroupY: 0;
+}
+
+::selection {
+    background-color: rgb(98, 98, 102) !important;
+    color: #171719;
+}
+
+:root {
+    --testHeight: 0px;
+    --testWidth: 0px;
+}
+
+@media (min-width: 1112px) {
+    html {
+        --layoutWidth: var(--layoutWidthMax);
+        --gutterWidth: calc(var(--windowWidth) / 2 - var(--layoutWidth) / 2);
+    }
+}
+
+$phi: 1.6180339887498948482;
+
+$cubic-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$cubic-tiny-bounce: cubic-bezier(0.43, 0.09, 0.38, 2.56);
+
+$max-width: 1180px !default;

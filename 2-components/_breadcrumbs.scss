@@ -1,0 +1,41 @@
+.breadcrumbs {
+    height: 100%;
+    display: flex;
+    font-size: 0;
+    a {
+        font-size: 18px;
+        transition: 0.2s var(--cubicEase) color;
+        &:hover {
+            color: var(--titleColor);
+        }
+    }
+    a {
+        display: flex;
+        align-items: center;
+        &[href="/"] {
+            width: 72px;
+            aspect-ratio: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    > .content {
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+    }
+    .nav {
+        & + .nav {
+            &:before {
+                content: "/";
+                color: #c2ccd9;
+                opacity: 0.6;
+                font: inherit;
+                position: relative;
+                margin: 0 10px 0 10px;
+                pointer-events: none;
+            }
+        }
+    }
+}
