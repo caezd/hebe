@@ -1,12 +1,8 @@
-import { qs, qsa } from "../core/utils.js";
-import {
-    navigationAnimation,
-    getGlobalTimeline,
-    clearGlobal,
-    mapAnimation,
-} from "../animations/navigation.js";
+import { qs } from "../core/utils.js";
+import { getGlobalTimeline, mapAnimation } from "../animations/navigation.js";
 
 import { createMapController } from "../ui/MapController.js";
+import { initMenu } from "../ui/MenuController.js";
 
 const els = {
     menuButton: qs(document, "#menu"),
@@ -30,6 +26,8 @@ export function initLayoutScripts(opts = {}) {
         });
     }
 
+    initMenu();
+
     return {
         destroy() {
             mapCtrl.destroy();
@@ -38,8 +36,6 @@ export function initLayoutScripts(opts = {}) {
             mapCtrl.close();
         },
     };
-
-    initMap();
 }
 
 function page_type() {

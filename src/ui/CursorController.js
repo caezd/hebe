@@ -10,8 +10,8 @@ const CONFIG = {
         fade: 300, // show/hide via Element.animate
     },
     SELECTORS: {
-        text: ".txt, .txt *, .ce-block__content, .ce-block__content *, textarea, input",
-        forum: ".forum, .forum *",
+        text: ".txt, .txt *:not(dfn, a), .ce-block__content, .ce-block__content *, textarea, input",
+        forum: ".forum, .forum *, .spy, .spy *",
         btn: ".btn, .btn *",
         profileSymbol: ".subject__profileSymbol",
         barbaContainer: 'section[data-barba="container"]',
@@ -20,7 +20,7 @@ const CONFIG = {
         cursorFollow: "#cursorFollow",
         postbody: ".postbody",
         forumEl: ".forum",
-        link: "a[href]:not(.no-cursor):not(:where(.btn *)):not(.btn), a[href]:not(.no-cursor):not(:where(.btn *)) *, .marker, .marker *",
+        link: "dfn, a[href]:not(.no-cursor):not(:where(.btn *, .spy *)):not(.btn, .spy), a[href]:not(.no-cursor):not(:where(.btn *, .spy *)) *, .marker:not(.temp), .marker:not(.temp) *",
         map: "#map canvas",
     },
 };

@@ -1,0 +1,62 @@
+{
+    "soul.radiating": {
+        "title": "Âme irradiante",
+        "long": "Champs lexical : Rayonnement, éclat, clarté, auréole, vigueur, solarité, illumination, noblesse, joie, vitalité, velours, halo, braise, aube, chaleur, phare.<br/><br/>Vertu/Vice : Générosité / Orgueil<br/><br/>Symboles : Solei, or, flamme.<br><br>Ascendants : Éveillée (Oct), Pastorale (Juin)<br><br>Descendant : Assombrie (Déc)",
+        "v/v": "Vertu/Vice : Générosité / Orgueil",
+        "symbol": "Soleil, or, flamme",
+        "asc": "Éveillée (Oct), Pastorale (Juin)",
+        "desc": "Assombrie (Déc)"
+    },
+    "soul.tainted": {
+        "title": "Âme souillée",
+        "long": "Champs lexical : Tache, souillure, remords, tare, corruption, fange, rouille, vice, pénitence, purge, vase, éclat brisé, cicatrice, rancœur.<br><br>Vertu/Vice : Lucidité / Culpabilité.<br><br>Symboles : Boue, suie, eau sombre.<br><br>Ascendant : Changeante (Nov), Dichotome (Avr)<br><br>Descendant : Innocente (Sep)"
+    },
+    "soul.endless": {
+        "title": "Âme infinie"
+    },
+    "soul.beastly": {
+        "title": "Âme bestiale"
+    },
+    "soul.dominating": {
+        "title": "Âme dominante"
+    },
+    "soul.antagonistic": {
+        "title": "Âme antagoniste"
+    },
+    "soul.decrepit": {
+        "title": "Âme délabrée"
+    },
+    "soul.amoral": {
+        "title": "Âme amorale"
+    },
+    "soul.halved": {
+        "title": "Âme dichotome"
+    },
+    "soul.gladiatorial": {
+        "title": "Âme gladiatoire"
+    },
+    "soul.solitary": {
+        "title": "Âme solitaire"
+    },
+    "soul.enlightenment": {
+        "title": "Âme illuminée"
+    },
+    "soul.blank": {
+        "title": "Âme effacée"
+    },
+    "soul.mourning": {
+        "title": "Âme éplorée"
+    },
+    "soul.changeling": {
+        "title": "Âme changeante"
+    },
+    "soul.suffocated": {
+        "title": "Âme suffocante"
+    },
+    "soul.chaotic": {
+        "title": "Âme chaotique"
+    },
+    "soul.shadowed": {
+        "title": "Âme assombrie"
+    }
+}

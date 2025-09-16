@@ -46,11 +46,11 @@ export function mapAnimation({ container }) {
     };
 
     ft(i, he.coverFrom, he.coverTo);
-    ft(i, he.coverExitFrom, he.coverExitTo, 0.7);
-    ft(r, he.coverFrom, he.coverTo, 0.7);
-    ft(o, he.fadeFrom, { ...he.fadeTo, stagger: 0.033 }, 1.7);
-    ft(width, he.growWidthFrom, { ...he.growWidthTo, stagger: 0.033 }, 1.7);
-    ft(height, he.growHeightFrom, { ...he.growHeightTo, stagger: 0.033 }, 1.7);
+    ft(i, he.coverExitFrom, he.coverExitTo, 0.3);
+    ft(r, he.coverFrom, he.coverTo, 0.3);
+    ft(o, he.fadeFrom, { ...he.fadeTo, stagger: 0.033 }, 0.4);
+    ft(width, he.growWidthFrom, { ...he.growWidthTo, stagger: 0.033 }, 0.4);
+    ft(height, he.growHeightFrom, { ...he.growHeightTo, stagger: 0.033 }, 0.4);
 
     setGlobalTimeline(tl);
     return tl;

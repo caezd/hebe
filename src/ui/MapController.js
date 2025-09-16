@@ -112,6 +112,15 @@ export function decimalToDMSString(
     return formatDMS(toDMS(value, type, precision), { precision, pad });
 }
 
+function readInlineColor(el) {
+    if (!el) return "";
+    const target = el.querySelector?.('.color-groups[style*="color"]') || el;
+    const style = target?.style.color || target?.getAttribute("style") || "";
+    if (!style) return "";
+    // parse color: #rrggbb or rgb(...) or named color from style attribute
+    return style;
+}
+
 // -------------------------------------
 // Forum topics scraping (robust)
 async function fetchForumTopics({ forumId = 1, limit = 12, signal } = {}) {
@@ -131,24 +140,35 @@ async function fetchForumTopics({ forumId = 1, limit = 12, signal } = {}) {
                     const url = new URL(href, location.origin).href;
                     const row = a.closest(".row, .topic-row, tr");
                     const title = (a.textContent || "Untitled").trim();
-                    const author =
+
+                    const authorA = qs(
+                        row,
+                        ".topic-author a, .username a, .topic-author > a"
+                    );
+                    const authorUrl = authorA
+                        ? new URL(authorA.getAttribute("href"), location.origin)
+                              .href
+                        : "";
+                    const authorName =
+                        authorA?.textContent?.trim() ||
                         row
-                            ?.querySelector(".username, .topic-author a")
-                            ?.textContent?.trim() || "";
+                            ?.querySelector(".topic-author")
+                            ?.textContent?.replace(/\s*par\s*/i, "")
+                            .trim() ||
+                        "";
+                    const authorColor = readInlineColor(authorA);
+
                     const replies =
-                        row
-                            ?.querySelector(".posts, .topic-replies")
-                            ?.textContent?.trim() || "";
-                    const last =
-                        row
-                            ?.querySelector(
-                                ".lastpost, .topic-lastpost, .gensmall"
-                            )
-                            ?.textContent?.trim() || "";
+                        qs(
+                            row,
+                            ".posts, .topic-replies"
+                        )?.textContent?.trim() || "";
+
                     const desc =
-                        row
-                            ?.querySelector(".topic-description, .topic-desc")
-                            ?.textContent?.trim() || "";
+                        qs(
+                            row,
+                            ".topic-description, .topic-desc"
+                        )?.textContent?.trim() || "";
                     const mId = url.match(/t(\d+)-/);
                     const id = mId ? mId[1] : "";
                     // parse [lon, lat] in title or description
@@ -159,21 +179,64 @@ async function fetchForumTopics({ forumId = 1, limit = 12, signal } = {}) {
                     const lat = parseFloat(coords[2]);
                     if (!Number.isFinite(lon) || !Number.isFinite(lat))
                         return null;
-                    const district = (
-                        where.match(/"([^"]+)"/)?.[1] || ""
-                    ).trim();
+
+                    // lastpost
+                    const lastpost = qs(row, ".lastpost");
+                    const lastpost_avatar = qs(lastpost, "img");
+                    const lastpost_user = qs(lastpost, 'a[href^="/u"]');
+                    const lastpost_color = readInlineColor(lastpost_user);
+                    const lastpost_link = qs(lastpost, 'a[href^="/t"]');
+                    const lastpost_infos = qs(lastpost, ".lastpost-infos");
+                    const lastpost_date =
+                        new Tyme(
+                            lastpost_infos?.lastChild.textContent.trim()
+                        ) || "";
+                    console.log({
+                        lastpost_avatar,
+                        lastpost_user,
+                        lastpost_color,
+                        lastpost_link,
+                        lastpost_date,
+                    });
+
                     return {
                         id,
                         title,
                         desc,
-                        district,
                         url,
-                        author,
+                        author: {
+                            name: authorName,
+                            url: authorUrl,
+                            color: authorColor,
+                        },
                         replies,
-                        last,
                         coords: [lon, lat],
+                        lastpost: {
+                            avatar: lastpost_avatar
+                                ? new URL(lastpost_avatar.src)
+                                : null,
+                            user: lastpost_user
+                                ? {
+                                      name: lastpost_user.textContent.trim(),
+                                      url: new URL(lastpost_user.href),
+                                      color: lastpost_color,
+                                  }
+                                : null,
+                            link: lastpost_link
+                                ? new URL(lastpost_link.href)
+                                : null,
+                            date: {
+                                day: lastpost_date.parseToFormat("DD") || "",
+                                month: lastpost_date.parseToFormat("MM") || "",
+                                year: lastpost_date.parseToFormat("YYYY") || "",
+                                time:
+                                    lastpost_date.parseToFormat("HH:mm") || "",
+                                full: lastpost_date.toString() || "",
+                            },
+                        },
                     };
-                } catch {
+                } catch (e) {
+                    console.error("[Map] fetchForumTopics error:", e);
                     return null;
                 }
             })
@@ -194,37 +257,28 @@ export class TopicController {
         newTopicAsideSelector = ".map__asideContainer.newTopic",
     } = {}) {
         this.map = map;
-        this.topicsContainer =
-            document.querySelector(topicsContainerSelector) || null;
-        this.asideContainer =
-            document.querySelector(newTopicAsideSelector) || null;
+        this.topicsContainer = qs(document, topicsContainerSelector) || null;
+        this.asideContainer = qs(document, newTopicAsideSelector) || null;
         this.toggleButton =
-            this.asideContainer?.querySelector(".newTopic__closeButton") ||
-            null;
+            qs(this.asideContainer, ".newTopic__closeButton") || null;
         this.isCreating = false;
         this.isAsideOpened = false;
 
         // optional fields inside aside
         this.subjectInput =
-            this.asideContainer?.querySelector(
-                '[name="subject"], #newTopicSubject'
-            ) || null;
+            qs(this.asideContainer, '[name="subject"], #newTopicSubject') ||
+            null;
         this.messageInput =
-            this.asideContainer?.querySelector(
-                '[name="message"], #newTopicMessage'
-            ) || null;
+            qs(this.asideContainer, '[name="message"], #newTopicMessage') ||
+            null;
         this.coordsInput =
-            this.asideContainer?.querySelector(
-                '[name="coords"], #newTopicCoords'
-            ) || null;
+            qs(this.asideContainer, '[name="coords"], #newTopicCoords') || null;
         this.districtInput =
-            this.asideContainer?.querySelector(
-                '[name="district"], #newTopicDistrict'
-            ) || null;
+            qs(this.asideContainer, '[name="district"], #newTopicDistrict') ||
+            null;
         this.coordsDecimalEl =
-            this.asideContainer?.querySelector("[data-coords-decimal]") || null;
-        this.coordsDMSEl =
-            this.asideContainer?.querySelector("[data-coords-dms]") || null;
+            qs(this.asideContainer, "[data-coords-decimal]") || null;
+        this.coordsDMSEl = qs(this.asideContainer, "[data-coords-dms]") || null;
 
         this._bindAsideEvents();
         this._loadState();
@@ -279,6 +333,22 @@ export class TopicController {
         } catch {
             /* ignore */
         }
+    }
+
+    _readDraft() {
+        const raw = localStorage.getItem("newTopic");
+        if (!raw) return null;
+        return JSON.parse(raw);
+    }
+
+    _writeDraft(payload) {
+        try {
+            localStorage.setItem("newTopic", JSON.stringify(payload));
+        } catch {}
+    }
+
+    getDraft() {
+        return this._readDraft();
     }
 
     _updateCoordDisplays(lngLat) {
@@ -384,6 +454,7 @@ export async function createMapController({
         })) || [];
 
     let map = null;
+    const topicMarkers = new Map();
     let cam = null;
     let tempMarker = null;
     let onMove = null;
@@ -437,33 +508,34 @@ export async function createMapController({
             layers: [DISTRICT_LAYER],
         });
         return features && features.length > 0
-            ? features[0].properties?.name || features[0].id || null
+            ? features[0].properties?.Stadsdeel || features[0].id || null
             : null;
     }
 
     function renderTopicMarkers() {
         if (!map || !Array.isArray(topics) || !topics.length) return [];
         const made = [];
-        const frag = document.createDocumentFragment();
 
         topics.forEach((t) => {
             try {
                 if (!t || !Array.isArray(t.coords) || t.coords.length !== 2)
                     return;
-                const [lon, lat] = t.coords;
-                if (!Number.isFinite(lon) || !Number.isFinite(lat)) return;
+                const pos = Array.isArray(t.coords)
+                    ? { lng: t.coords[0], lat: t.coords[1] }
+                    : t.coords;
+                if (!Number.isFinite(pos.lng) || !Number.isFinite(pos.lat))
+                    return;
                 const title = t.title || "Untitled";
                 const el = document.createElement("div");
                 el.className = "marker";
                 el.innerHTML = `<div class="marker-label">${title}</div><div class='marker-pulse'></div>`;
                 const m = new maplibregl.Marker({ element: el })
-                    .setLngLat([lon, lat])
-                    .setPopup(new maplibregl.Popup().setHTML(title))
+                    .setLngLat([pos.lng, pos.lat])
                     .addTo(map);
                 made.push(m);
-                frag.appendChild(el);
-            } catch {
-                /* ignore one bad topic */
+                if (t.id) topicMarkers.set(String(t.id), m);
+            } catch (error) {
+                console.error("[Map] renderTopicMarkers error:", error);
             }
         });
 
@@ -475,36 +547,175 @@ export async function createMapController({
         return made;
     }
 
+    function focusTopicById(id) {
+        const m = topicMarkers.get(String(id));
+        if (!m || !map) return;
+
+        const ll = m.getLngLat();
+
+        // décale légèrement pour compenser l’aside (gauche/droite)
+        const leftAsideW = layoutBoard?.classList.contains("active")
+            ? layoutBoard.offsetWidth || 0
+            : 0;
+        const rightAsideW = newTopicAside?.classList.contains("active")
+            ? newTopicAside.offsetWidth || 0
+            : 0;
+        const offsetX = (leftAsideW - rightAsideW) / 2; // px vers la droite si aside gauche ouverte
+
+        centerOn(ll);
+
+        // petit highlight visuel du marker
+        try {
+            const el = m.getElement();
+            el.classList.add("is-hovered");
+            setTimeout(() => el.classList.remove("is-hovered"), 700);
+        } catch {}
+    }
+
+    let lastFocusLL = null; // mémorise le dernier point centré
+
+    function centerOn(
+        lngLat,
+        { zoom = 16, padX = 0, padY = 0, duration = 450 } = {}
+    ) {
+        if (!map) return;
+        lastFocusLL = lngLat; // garde la trace pour re-centre après resize
+        map.easeTo({
+            center: lngLat,
+            zoom: Math.max(map.getZoom(), zoom),
+            offset: [padX, padY], // en push-layout, laisse à 0,0 (sauf micro-ajustement d’ancre)
+            duration,
+        });
+    }
+
+    function installTopicHover() {
+        if (!topicsContainer) return;
+
+        // garde la référence du label actuellement surligné
+        let activeLabelEl = null;
+
+        function activateLabelForMarker(m) {
+            try {
+                const el = m?.getElement?.();
+                const label = el?.querySelector?.(".marker-label") || null;
+                if (activeLabelEl && activeLabelEl !== label) {
+                    activeLabelEl.classList.remove("marker-label--hover");
+                }
+                if (label) {
+                    label.classList.add("marker-label--hover");
+                }
+                activeLabelEl = label || null;
+            } catch {
+                // en cas d'erreur, on nettoie
+                if (activeLabelEl) {
+                    activeLabelEl.classList.remove("marker-label--hover");
+                    activeLabelEl = null;
+                }
+            }
+        }
+
+        function clearActiveLabel() {
+            if (activeLabelEl) {
+                activeLabelEl.classList.remove("marker-label--hover");
+                activeLabelEl = null;
+            }
+        }
+
+        // Survol d'un item → focus + highlight du label
+        topicsContainer.addEventListener("mouseover", (e) => {
+            const item = e.target.closest(".map__topicsList-item");
+            if (!item || !topicsContainer.contains(item)) return;
+
+            const id = item.dataset.topicId;
+
+            if (id && topicMarkers?.has(id)) {
+                // centrer/zoomer via l’ID → marker connu
+                focusTopicById(id);
+                const m = topicMarkers.get(id);
+                activateLabelForMarker(m);
+            } else if (item.dataset.lng && item.dataset.lat) {
+                // fallback coordonnées (pas d’ID mappé) → centre sans highlight
+                const ll = [
+                    parseFloat(item.dataset.lng),
+                    parseFloat(item.dataset.lat),
+                ];
+                if (Number.isFinite(ll[0]) && Number.isFinite(ll[1])) {
+                    centerOn(ll, { zoom: 16.4, duration: 600 });
+                }
+                clearActiveLabel();
+            }
+        });
+
+        // Quand on QUITTE l’item, retirer la classe du label
+        topicsContainer.addEventListener("mouseout", (e) => {
+            const item = e.target.closest(".map__topicsList-item");
+            if (!item) return;
+
+            // si on reste à l’intérieur du même item, ne rien faire
+            if (e.relatedTarget && item.contains(e.relatedTarget)) return;
+
+            clearActiveLabel();
+        });
+
+        // (optionnel) si tu veux aussi nettoyer quand on quitte toute la liste :
+        topicsContainer.addEventListener("mouseleave", clearActiveLabel);
+    }
+
     function renderTopicAside() {
         if (!Array.isArray(topics) || !topics.length || !topicsContainer)
             return;
-        const grouped = topics.reduce((acc, t) => {
-            const key = t?.district || "Unknown";
-            (acc[key] ||= []).push(t);
-            return acc;
-        }, {});
 
-        const frag = document.createDocumentFragment();
-        Object.entries(grouped).forEach(([district, arr]) => {
-            const districtEl = document.createElement("div");
-            districtEl.className = "map-topics__district";
-            districtEl.innerHTML = `<h3>${district}</h3>`;
-            arr.forEach((topic) => {
-                const item = document.createElement("div");
-                item.className = "map-topics__item";
-                const safeTitle = topic.title || "Untitled";
-                const safeDesc = topic.desc || "";
-                item.innerHTML = `<a href="${topic.url}" rel="noopener">
-          <h4 class="map-topics__item-title">${safeTitle}</h4>
-          <p class="map-topics__item-desc">${safeDesc}</p>
-        </a>`;
-                districtEl.appendChild(item);
-            });
-            frag.appendChild(districtEl);
+        const div = document.createElement("div");
+        div.className = "map__topicsList";
+
+        topics.forEach((topic) => {
+            const item = document.createElement("div");
+            item.className = "map__topicsList-item";
+            item.dataset.topicId = String(topic.id || "");
+            item.dataset.lng = String(topic.coords?.[0] ?? "");
+            item.dataset.lat = String(topic.coords?.[1] ?? "");
+            const safeTitle = topic.title || "Aucun titre à signaler";
+            item.innerHTML = `
+            <div>
+                ${
+                    topic.lastpost?.avatar
+                        ? `<img src="${topic.lastpost.avatar}" alt="Avatar" class="map__topicsList-item-avatar" />`
+                        : ""
+                }
+                <div class="map__topicsList-item-date">
+                    <span>${topic.lastpost?.date.day || ""}</span>
+                    <span>${topic.lastpost?.date.month || ""}</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="map__topicsList-item-title"><a class="linkStriked" href="${
+                    topic.url
+                }">${safeTitle}</a></h4>
+                <p class="map__topicsList-item-meta">
+                 <span class="map__topicsList-item-district">${
+                     districtAtLngLat({
+                         lng: topic.coords[0],
+                         lat: topic.coords[1],
+                     }) || "Unknown District"
+                 }</span>
+                    <a href="${
+                        topic.lastpost?.user?.profileUrl || "#"
+                    }" class="map__topicsList-item-author ">
+                        <span style="background-color:${
+                            topic.lastpost?.user?.color || "inherit"
+                        }"></span>${
+                topic.lastpost?.user?.name.split(" ")[0][0]
+            }. ${topic.lastpost?.user?.name.split(" ")[1] || ""}
+                    </a>
+                </p>
+            </div>
+
+            `;
+            div.appendChild(item);
         });
 
         topicsContainer.innerHTML = "";
-        topicsContainer.appendChild(frag);
+        topicsContainer.appendChild(div);
     }
 
     function installUIBindings() {
@@ -538,33 +749,10 @@ export async function createMapController({
         if (!pointIsInDistrict(e.point)) return;
 
         // drop/replace a temp marker
-        if (tempMarker) {
-            try {
-                tempMarker.remove();
-            } catch {}
-        }
-
-        const el = document.createElement("div");
-        el.className = "marker temp";
-        el.innerHTML = `<div class="marker-label marker-label--temp" hidden></div><div class='marker-pulse'></div>`;
-
-        tempMarker = new maplibregl.Marker({ element: el })
-            .setLngLat(e.lngLat)
-            .setPopup(
-                new maplibregl.Popup({ offset: 16 }).setText(
-                    `Lng: ${e.lngLat.lng.toFixed(
-                        6
-                    )}\nLat: ${e.lngLat.lat.toFixed(6)}`
-                )
-            )
-            .addTo(map);
+        ensureTempMarkerAt(e.lngLat);
 
         // zoom in a bit & center on click
-        map.easeTo({
-            zoom: Math.max(map.getZoom(), 16.4),
-            center: e.lngLat,
-            duration: 600,
-        });
+        centerOn(e.lngLat, { zoom: 16.4, duration: 600 });
 
         // update aside via TopicController
         const dist = districtAtLngLat(e.lngLat);
@@ -578,35 +766,38 @@ export async function createMapController({
 
     function updateViewportConstraints() {
         if (!map) return;
-        // Always notify MapLibre first
-        map.resize();
+        map.resize(); // le centre visible = centre du container (pas besoin d'offset)
 
-        // Shift camera target a bit if any aside is open so focus stays visible
-        const leftAsideW = layoutBoard?.classList.contains("active")
-            ? layoutBoard.offsetWidth || 0
-            : 0;
-        const rightAsideW = newTopicAside?.classList.contains("active")
-            ? newTopicAside.offsetWidth || 0
-            : 0;
-        const netOffsetX = (rightAsideW - leftAsideW) / 2; // rough: move half the delta
-
-        // Recompute a slightly shifted maxBounds based on pixel offset → fraction
-        const { fx } = pxOffsetToLngLatFraction(mapHost, -netOffsetX, 0);
-        const base = INITIAL_BOUNDS;
-        const shifted = offsetBoundsByFraction(base, fx, 0);
         try {
-            map.setMaxBounds(shifted);
-        } catch {}
-
-        // If we have a cached camera-from-bounds, refresh it
-        try {
-            cam = map.cameraForBounds(shifted, {
+            map.setMaxBounds(INITIAL_BOUNDS); // pas de décalage
+            cam = map.cameraForBounds(INITIAL_BOUNDS, {
                 padding: { top: 32, right: 32, bottom: 32, left: 32 },
                 bearing: map.getBearing(),
                 pitch: map.getPitch(),
                 maxZoom: clamp(map.getZoom(), 6, 19),
             });
         } catch {}
+    }
+
+    function ensureTempMarkerAt(lngLat) {
+        if (!map) return null;
+        const pos = Array.isArray(lngLat)
+            ? { lng: lngLat[0], lat: lngLat[1] }
+            : lngLat;
+        if (!tempMarker) {
+            const el = document.createElement("div");
+            el.className = "marker temp";
+            el.innerHTML = `<div class="marker-label marker-label--temp" hidden></div><div class='marker-pulse'></div>`;
+            tempMarker = new maplibregl.Marker({ element: el }).setLngLat(pos);
+            tempMarker.addTo(map);
+        } else {
+            tempMarker.setLngLat(pos);
+        }
+        const popupText = `Lng: ${Number(pos.lng).toFixed(6)}\nLat: ${Number(
+            pos.lat
+        ).toFixed(6)}`;
+        tempMarker.getPopup()?.setText(popupText);
+        return tempMarker;
     }
 
     function updateTempMarkerLabel(text) {
@@ -716,10 +907,10 @@ export async function createMapController({
                 cam = map.cameraForBounds(
                     offsetBoundsByFraction(INITIAL_BOUNDS, -0.18, 0),
                     {
-                        padding: { top: 32, right: 32, bottom: 32, left: 32 },
                         bearing: -17.6,
                         pitch: 45,
                         maxZoom: 12.62,
+                        offset: [-600, 0],
                     }
                 );
                 if (cam) map.jumpTo(cam);
@@ -728,6 +919,31 @@ export async function createMapController({
 
             renderTopicMarkers();
             renderTopicAside();
+            installTopicHover();
+
+            try {
+                const draft = topicController?.getDraft?.();
+                if (draft?.coords) {
+                    const coords = Array.isArray(draft.coords)
+                        ? { lng: draft.coords[0], lat: draft.coords[1] }
+                        : draft.coords;
+
+                    ensureTempMarkerAt(coords);
+                    topicController?.moveNewTopic(
+                        [coords.lng, coords.lat],
+                        draft.district || null
+                    );
+                    topicController?.openAside();
+                    map.easeTo({
+                        ...cam,
+                        center: [coords.lng, coords.lat],
+                        zoom: Math.max(map.getZoom(), 16.4),
+                    });
+                    if (draft.subject) updateTempMarkerLabel(draft.subject);
+                }
+            } catch (err) {
+                console.error("[Map] init error:", err);
+            }
             updateViewportConstraints();
         });
     } catch (err) {

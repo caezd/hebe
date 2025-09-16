@@ -6628,23 +6628,7 @@
           ]
         ]
       ],
-      "paint": {
-        "fill-opacity": 0.4,
-        "fill-antialias": true,
-        "fill-color": "rgba(17, 70, 210, 1)"
-      }
-    },
-    {
-      "id": "districts-outline",
-      "type": "line",
-      "source": "districts",
-      "minzoom": 8,
-      "filter": [
-        "in",
-        ["geometry-type"],
-        ["literal", ["Polygon", "MultiPolygon"]]
-      ],
-      "paint": {"line-color": "#be2026", "line-width": 2, "line-opacity": 0.4}
+      "paint": {"fill-opacity": 0, "fill-antialias": true}
     }
   ],
   "id": "dark-matter"
