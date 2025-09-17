@@ -20,7 +20,7 @@ const CONFIG = {
         cursorFollow: "#cursorFollow",
         postbody: ".postbody",
         forumEl: ".forum",
-        link: "dfn, a[href]:not(.no-cursor):not(:where(.btn *, .spy *)):not(.btn, .spy), a[href]:not(.no-cursor):not(:where(.btn *, .spy *)) *, .marker:not(.temp), .marker:not(.temp) *",
+        link: ".switcheroo__squircle--button, .switcheroo__squircle--button *, .switcheroo__delete, dfn, a[href]:not(.no-cursor):not(:where(.btn *, .spy *)):not(.btn, .spy), a[href]:not(.no-cursor):not(:where(.btn *, .spy *)) *, .marker:not(.temp), .marker:not(.temp) *",
         map: "#map canvas",
     },
 };

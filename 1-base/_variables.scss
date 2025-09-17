@@ -63,13 +63,13 @@ html {
     --rowGapNormal: 8px;
     --rowGapMedium: 24px;
 
-    --fontFamily: "Montserrat";
+    --fontFamily: "Erode";
     --narrowFontFamily: "Wire One";
-    --titleFontFamily: "Rajdhani";
+    --titleFontFamily: "Tanker";
     --fontWeightNormal: 400;
     --fontWeightMedium: 500;
     --fontWeightBold: 600;
-    --titleWeight: var(--fontWeightBold);
+    --titleWeight: var(--fontWeightMedium);
 
     @media (min-width: 600px) {
         --columnPaddingMedium: 32px;
