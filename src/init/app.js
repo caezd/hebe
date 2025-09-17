@@ -10,49 +10,52 @@ import { initEnochian } from "../ui/Enochian.js";
 import { initTimelineCalendar, CalendarKill } from "../features/calendar.js";
 
 import Glossary from "../ui/Glossary.js";
+import { Notepad } from "../ui/Notepad.js";
 
 // ex:
 
 export function initUI() {
-    document
-        .querySelectorAll('div[style^="height:"')
-        .forEach((el) => el.remove());
+  document
+    .querySelectorAll('div[style^="height:"')
+    .forEach((el) => el.remove());
 
-    Context.container =
-        document.querySelector('section[data-barba="container"]') || document;
+  Context.container =
+    document.querySelector('section[data-barba="container"]') || document;
 
-    const cursor = CursorController.init();
+  const cursor = CursorController.init();
 
-    initLayoutScripts();
-    // REGISTER
-    onNamespace("register", { afterEnter: async () => initRegisterScripts() });
-    // TOPIC
-    onNamespace("topic", {
-        afterEnter: async ({ next }) => {
-            initTopicScripts(next.container);
-            initEnochian(next.container);
-        },
-    });
-    // FAQ
-    onNamespace("faq", {
-        afterEnter: async ({ next }) => {
-            initFAQScripts(next.container);
-            initEnochian(next.container);
-            Glossary.init({
-                url: "http://127.0.0.1:8080/faq.json",
-            });
-        },
-    });
+  new Notepad();
 
-    onNamespace("calendar", {
-        afterEnter: async ({ next }) => {
-            await initTimelineCalendar(next.container);
-        },
-    });
+  initLayoutScripts();
+  // REGISTER
+  onNamespace("register", { afterEnter: async () => initRegisterScripts() });
+  // TOPIC
+  onNamespace("topic", {
+    afterEnter: async ({ next }) => {
+      initTopicScripts(next.container);
+      initEnochian(next.container);
+    },
+  });
+  // FAQ
+  onNamespace("faq", {
+    afterEnter: async ({ next }) => {
+      initFAQScripts(next.container);
+      initEnochian(next.container);
+      Glossary.init({
+        url: "http://127.0.0.1:8080/faq.json",
+      });
+    },
+  });
 
-    console.debug("[barba] registered ns hooks:", getRegisteredNamespaces());
+  onNamespace("calendar", {
+    afterEnter: async ({ next }) => {
+      await initTimelineCalendar(next.container);
+    },
+  });
 
-    initBarba({ cursor });
+  console.debug("[barba] registered ns hooks:", getRegisteredNamespaces());
 
-    return { Context, cursor };
+  initBarba({ cursor });
+
+  return { Context, cursor };
 }
