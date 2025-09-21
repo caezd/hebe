@@ -1,62 +1,118 @@
 {
     "soul.radiating": {
         "title": "Âme irradiante",
-        "long": "<h2>Champs lexical</h2><p>Rayonnement, éclat, clarté, auréole, vigueur, solarité, illumination, noblesse, joie, vitalité, velours, halo, braise, aube, chaleur, phare.</p><h2>Vertu/Vice</h2><p>Générosité / Orgueil</p><h2>Symboles</h2><p>Soleil, or, flamme.</p><h2>Noeuds</h2><p>Ascendants : Éveillée (Oct), Pastorale (Juin)</p><p>Descendant :Assombrie (Déc)</p>",
-        "v/v": "Vertu/Vice : Générosité / Orgueil",
-        "symbol": "Soleil, or, flamme",
-        "asc": "Éveillée (Oct), Pastorale (Juin)",
-        "desc": "Assombrie (Déc)"
+        "long": "<h2>Champs lexical</h2><p>Aurore, éclat, firmament, solaire, magnétisme, vitalité, ascension, lumière pure, zénith, rayonnement, clarté, splendeur, illumination, transparence, noblesse.</p><h2>Vertu/Vice</h2><p>Générosité / Orgueil</p><h2>Symboles</h2><p>Soleil, Phénix, or, flambeau.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Illuminée (Oct), Pastorale (Juin)</p><p><strong>Descendant :</strong> Assombrie (Déc)</p>"
     },
     "soul.tainted": {
         "title": "Âme souillée",
-        "long": "Champs lexical : Tache, souillure, remords, tare, corruption, fange, rouille, vice, pénitence, purge, vase, éclat brisé, cicatrice, rancœur.<br><br>Vertu/Vice : Lucidité / Culpabilité.<br><br>Symboles : Boue, suie, eau sombre.<br><br>Ascendant : Changeante (Nov), Dichotome (Avr)<br><br>Descendant : Innocente (Sep)"
+        "long": "<h2>Champs lexical</h2><p>Souillure, cendre, vase, chute, rouille, fardeau, remords, gouffre, corruption, déchéance, marque, pénombre, rancune, tare.</p><h2>Vertu/Vice</h2><p>Lucidité / Culpabilité</p><h2>Symboles</h2><p>Corbeau, boue.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Changeante (Nov), Dichotome (Avr)</p><p><strong>Descendant :</strong> Innocente (Sep)</p>"
     },
     "soul.endless": {
-        "title": "Âme infinie"
+        "title": "Âme infinie",
+        "long": "<h2>Champs lexical</h2><p>Cycle, éternel retour, océan, spirale, marche des astres, flot sans rive, horizon, continuité, cercle, permanence, marée, constellation.</p><h2>Vertu/Vice</h2><p>Persévérance / Obsession</p><h2>Symboles</h2><p>Ouroboros, ciel.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Ordonnée (Juin), Latente (Août)</p><p><strong>Descendant :</strong> Stagnante (Juil)</p>"
     },
     "soul.beastly": {
-        "title": "Âme bestiale"
+        "title": "Âme bestiale",
+        "long": "<h2>Champs lexical</h2><p>Instinct, fauve, crocs, rugissement, chasse, pulsion, sauvagerie, territoire, faim, proie, domination viscérale.</p><h2>Vertu/Vice</h2><p>Courage / Fureur</p><h2>Symboles</h2><p>Loup, griffe, sanglier, tambour de chasse, peau animale.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Gladiatoire (Mai), Défiante (Août)</p><p><strong>Descendant :</strong> Pastorale (Juin)</p>"
     },
     "soul.dominating": {
-        "title": "Âme dominante"
+        "title": "Âme dominante",
+        "long": "<h2>Champs lexical</h2><p>Commandement, autorité, ascendant, emprise, suprématie, sceptre, puissance, domination, contrôle, hauteur.</p><h2>Vertu/Vice</h2><p>Leadership / Despotisme</p><h2>Symboles</h2><p>Lion, sceptre, trône, montagne, tour fortifiée.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Ordonnée (Juin), Illuminée (Oct)</p><p><strong>Descendant :</strong> Soumise (Juin)</p>"
     },
     "soul.antagonistic": {
-        "title": "Âme antagoniste"
+        "title": "Âme antagoniste",
+        "long": "<h2>Champs lexical</h2><p>Friction, opposition, lutte, discorde, rivalité, paradoxe, conflit, heurt, contradiction, résistance.</p><h2>Vertu/Vice</h2><p>Critique / Contrariété</p><h2>Symboles</h2><p>Épées croisées, balance renversée, éclair fendu, masque duel.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Défiante (Août), Changeante (Nov)</p><p><strong>Descendant :</strong> Aimante (Sep)</p>"
     },
     "soul.decrepit": {
-        "title": "Âme délabrée"
+        "title": "Âme délabrée",
+        "long": "<h2>Champs lexical</h2><p>Ruine, déclin, poussière, cendres, vieillesse, effritement, corrosion, délabrement, fatigue, décrépitude.</p><h2>Vertu/Vice</h2><p>Humilité / Résignation</p><h2>Symboles</h2><p>Chêne mort, feuille sèche, ruine antique, pierre érodée.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Éplorée (Nov), Assombrie (Déc)</p><p><strong>Descendant :</strong> Illuminée (Oct)</p>"
     },
     "soul.amoral": {
-        "title": "Âme amorale"
+        "title": "Âme amorale",
+        "long": "<h2>Champs lexical</h2><p>Neutralité, froideur, extériorité, détachement, calcul, absence de règle, indifférence, impartialité.</p><h2>Vertu/Vice</h2><p>Clarté / Indifférence</p><h2>Symboles</h2><p>Janus, miroir froid, dé transparent, sable uniforme.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Dichotome (Avr), Vide (Oct)</p><p><strong>Descendant :</strong> Pastorale (Juin)</p>"
     },
     "soul.halved": {
-        "title": "Âme dichotome"
+        "title": "Âme dichotome",
+        "long": "<h2>Champs lexical</h2><p>Bifurcation, dualité, division, contraste, choix, Janus, croisée, partage, fracture.</p><h2>Vertu/Vice</h2><p>Discernement / Indécision</p><h2>Symboles</h2><p>Masque double, croisée des chemins, coquille fendue, balance en équilibre.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Ordonnée (Juin), Innocente (Sep)</p><p><strong>Descendant :</strong> Chaotique (Déc)</p>"
     },
     "soul.gladiatorial": {
-        "title": "Âme gladiatoire"
+        "title": "Âme gladiatoire",
+        "long": "<h2>Champs lexical</h2><p>Arène, combat, bravoure, lutte, sueur, affrontement, spectateurs, duel, fer, clameur.</p><h2>Vertu/Vice</h2><p>Valeur / Brutalité</p><h2>Symboles</h2><p>Épée, casque, couronne de laurier tachée, arène.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Dominante (Mar), Défiante (Août)</p><p><strong>Descendant :</strong> Soumise (Juin)</p>"
     },
     "soul.solitary": {
-        "title": "Âme solitaire"
+        "title": "Âme solitaire",
+        "long": "<h2>Champs lexical</h2><p>Isolement, ermitage, silence, distance, introspection, repli, veille, nuit, autonomie.</p><h2>Vertu/Vice</h2><p>Autonomie / Isolement</p><h2>Symboles</h2><p>Hibou, cabane en lisière, lanterne, montagne isolée.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Latente (Août), Innocente (Sep)</p><p><strong>Descendant :</strong> Aimante (Sep)</p>"
+    },
+    "soul.submissive": {
+        "title": "Âme soumise",
+        "long": "<h2>Champs lexical</h2><p>Obéissance, docilité, soumission, acceptation, pli, fidélité, passivité.</p><h2>Vertu/Vice</h2><p>Loyauté / Servilité</p><h2>Symboles</h2><p>Chien, chaîne, ruban noué, sceau apposé.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Pastorale (Juin), Ordonnée (Juin)</p><p><strong>Descendant :</strong> Dominante (Mar)</p>"
+    },
+    "soul.order": {
+        "title": "Âme ordonnée",
+        "long": "<h2>Champs lexical</h2><p>Structure, cadence, symétrie, rang, mesure, équilibre, loi, règle, méthode, harmonie.</p><h2>Vertu/Vice</h2><p>Rigueur / Rigidité</p><h2>Symboles</h2><p>Compas, carré, temple, pierre cubique, cadran solaire.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Illuminée (Oct), Pastorale (Juin)</p><p><strong>Descendant :</strong> Chaotique (Déc)</p>"
+    },
+    "soul.shepherding": {
+        "title": "Âme pastorale",
+        "long": "<h2>Champs lexical</h2><p>Guidage, troupeau, soin, veille, transmission, patience, horizon, bienveillance.</p><h2>Vertu/Vice</h2><p>Bienveillance / Paternalisme</p><h2>Symboles</h2><p>Mouton, bâton de berger, foyer, cloche de cou.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Aimante (Sep), Ordonnée (Juin)</p><p><strong>Descendant :</strong> Bestiale (Fév)</p>"
+    },
+    "soul.tormented": {
+        "title": "Âme tourmentée",
+        "long": "<h2>Champs lexical</h2><p>Remords, insomnie, inquiétude, douleur, étau, tiraillement, trouble, obsession.</p><h2>Vertu/Vice</h2><p>Profondeur / Auto-martyre</p><h2>Symboles</h2><p>Larme, bougie consumée, eau noire, masque de tragédie.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Éplorée (Nov), Assombrie (Déc)</p><p><strong>Descendant :</strong> Caressante (Sep)</p>"
+    },
+    "soul.stagnant": {
+        "title": "Âme stagnante",
+        "long": "<h2>Champs lexical</h2><p>Immobilité, marais, vase, lenteur, torpeur, inertie, eau croupie, stase.</p><h2>Vertu/Vice</h2><p>Constance / Inertie</p><h2>Symboles</h2><p>Étang, lotus figé, carafe close, marécage.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Latente (Août), Vide (Oct)</p><p><strong>Descendant :</strong> Infinie (Fév)</p>"
+    },
+    "soul.defiant": {
+        "title": "Âme défiante",
+        "long": "<h2>Champs lexical</h2><p>Rébellion, contestation, bras levé, étincelle, bravade, refus, indépendance.</p><h2>Vertu/Vice</h2><p>Indépendance / Entêtement</p><h2>Symboles</h2><p>Éclair, bannière déchirée, fronde, flamme vive.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Gladiatoire (Mai), Antagoniste (Mar)</p><p><strong>Descendant :</strong> Soumise (Juin)</p>"
+    },
+    "soul.latent": {
+        "title": "Âme latente",
+        "long": "<h2>Champs lexical</h2><p>Germe, incubation, potentiel, veille, secret, silence, repos, attente.</p><h2>Vertu/Vice</h2><p>Patience / Procrastination</p><h2>Symboles</h2><p>Graine, charbon tiède, coffre, bourgeon.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Infinie (Fév), Solitaire (Mai)</p><p><strong>Descendant :</strong> Stagnante (Juil)</p>"
+    },
+    "soul.caressing": {
+        "title": "Âme caressante",
+        "long": "<h2>Champs lexical</h2><p>Douceur, tiédeur, velours, soupir, apaisement, tendresse, chaleur, délicatesse.</p><h2>Vertu/Vice</h2><p>Douceur / Mollesse</p><h2>Symboles</h2><p>Colombe, soie, fleur ouverte, brise légère.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Aimante (Sep), Innocente (Sep)</p><p><strong>Descendant :</strong> Tourmentée (Juil)</p>"
+    },
+    "soul.loving": {
+        "title": "Âme aimante",
+        "long": "<h2>Champs lexical</h2><p>Attache, don, accueil, chaleur, fraternité, charité, amour, lien, foyer.</p><h2>Vertu/Vice</h2><p>Charité / Possessivité</p><h2>Symboles</h2><p>Deux mains jointes, cœur, feu de foyer, vigne.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Caressante (Sep), Pastorale (Juin)</p><p><strong>Descendant :</strong> Antagoniste (Mar)</p>"
+    },
+    "soul.innocent": {
+        "title": "Âme innocente",
+        "long": "<h2>Champs lexical</h2><p>Candeur, pureté, fraîcheur, netteté, franchise, simplicité, aurore.</p><h2>Vertu/Vice</h2><p>Simplicité / Naïveté</p><h2>Symboles</h2><p>Lys, eau claire, perle, anneau d'argent.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Caressante (Sep), Dichotome (Avr)</p><p><strong>Descendant :</strong> Souillée (Jan)</p>"
     },
     "soul.enlightenment": {
-        "title": "Âme illuminée"
+        "title": "Âme illuminée",
+        "long": "<h2>Champs lexical</h2><p>Révélation, lumière, gnose, clarté, dévoilement, vision, sagesse.</p><h2>Vertu/Vice</h2><p>Sagesse / Hubris spirituel</p><h2>Symboles</h2><p>Phare, lampe, œil ouvert, étoile.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Ordonnée (Juin), Irradiante (Jan)</p><p><strong>Descendant :</strong> Vide (Oct)</p>"
     },
     "soul.blank": {
-        "title": "Âme effacée"
+        "title": "Âme vierge",
+        "long": "<h2>Champs lexical</h2><p>Silence, effacement, vacance, neutralité, absence, blanc, oubli.</p><h2>Vertu/Vice</h2><p>Disponibilité / Vacuité</p><h2>Symboles</h2><p>Neige, désert, feuille blanche, ciel sans étoile.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Dichotome (Avr), Latente (Août)</p><p><strong>Descendant :</strong> Illuminée (Oct)</p>"
     },
     "soul.mourning": {
-        "title": "Âme éplorée"
+        "title": "Âme éplorée",
+        "long": "<h2>Champs lexical</h2><p>Deuil, voile, perte, lamentation, cendre, souvenir, absence, nostalgie.</p><h2>Vertu/Vice</h2><p>Fidélité / Fixation</p><h2>Symboles</h2><p>Rose séchée, suaire, urne, lys blanc.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Tourmentée (Juil), Délabrée (Mar)</p><p><strong>Descendant :</strong> Aimante (Sep)</p>"
     },
     "soul.changeling": {
-        "title": "Âme changeante"
+        "title": "Âme changeante",
+        "long": "<h2>Champs lexical</h2><p>Mue, métamorphose, transformation, variation, fluidité, instabilité, mutation, passage, altération.</p><h2>Vertu/Vice</h2><p>Adaptabilité / Inconstance</p><h2>Symboles</h2><p>Papillon, kaléidoscope, peau abandonnée, caméléon, lune changeante.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Défiante (Août), Chaotique (Déc)</p><p><strong>Descendant :</strong> Stagnante (Juil)</p>"
     },
     "soul.suffocated": {
-        "title": "Âme suffocante"
+        "title": "Âme suffocante",
+        "long": "<h2>Champs lexical</h2><p>Oppression, asphyxie, carcan, étouffement, étau, prison, contrainte, fardeau, pression.</p><h2>Vertu/Vice</h2><p>Endurance / Étranglement intérieur</p><h2>Symboles</h2><p>Serpent enroulé, cage close, nuage sombre, fumée grise.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Assombrie (Déc), Tourmentée (Juil)</p><p><strong>Descendant :</strong> Irradiante (Jan)</p>"
     },
     "soul.chaotic": {
-        "title": "Âme chaotique"
+        "title": "Âme chaotique",
+        "long": "<h2>Champs lexical</h2><p>Tumulte, désordre, entropie, orage, tempête, débordement, effervescence, imprévu.</p><h2>Vertu/Vice</h2><p>Créativité sauvage / Dissolution</p><h2>Symboles</h2><p>Ouragan, éclaboussure, éclairs, tourbillon.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Défiante (Août), Changeante (Nov)</p><p><strong>Descendant :</strong> Ordonnée (Juin)</p>"
     },
     "soul.shadowed": {
-        "title": "Âme assombrie"
+        "title": "Âme assombrie",
+        "long": "<h2>Champs lexical</h2><p>Ombre, pénombre, retrait, mystère, voile, secret, obscurité, dissimulation, repli.</p><h2>Vertu/Vice</h2><p>Prudence / Mensonge</p><h2>Symboles</h2><p>Lune noire, corneille, manteau sombre, encrier, grotte.</p><h2>Noeuds</h2><p><strong>Ascendants :</strong> Suffocante (Déc), Éplorée (Nov)</p><p><strong>Descendant :</strong> Irradiante (Jan)</p>"
+    },
+    "babel": {
+        "title": "La Tour de Babel",
+        "long": "<p>La Tour de Babel est un édifice mythique que les hommes entreprirent d'érecter, guidés par le désir d'atteindre les cieux. Symbole d'ambition et d'orgueil collectif, elle incarne la tentative de l'humanité de franchir les limites du divin. Selon la légende, Dieu mit fin à cette entreprise en confondant le langage des bâtisseurs, brisant ainsi leur unité et forçant ainsi les peuples réunis autour d'elle à se disperser.</p>"
     }
 }

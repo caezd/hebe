@@ -20,11 +20,6 @@ export default [
                 sourcemap: true,
             },
         ],
-        plugins: [
-            resolve(),
-            commonjs(),
-            css({ output: "bundle.css" }),
-            terser(),
-        ],
+        plugins: [resolve(), commonjs(), terser()],
     },
 ];

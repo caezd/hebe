@@ -80,9 +80,8 @@ function renderLetter(char) {
 }
 
 export function initEnochian(container = Context.container) {
-    console.log("enoch");
     // Initialize Enochian UI components here
-    qsa(container, ".enochian").forEach((el) => {
+    qsa(container, "enoch").forEach((el) => {
         // split each letter into a span
         const text = el.textContent;
         el.innerHTML = text

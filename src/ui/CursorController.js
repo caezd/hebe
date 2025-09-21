@@ -11,7 +11,7 @@ const CONFIG = {
     },
     SELECTORS: {
         text: ".txt, .txt *:not(dfn, a), .ce-block__content, .ce-block__content *, textarea, input",
-        forum: ".forum, .forum *, .spy, .spy *",
+        forum: ".forum, .forum *, .spy, .spy *, dfn",
         btn: ".btn, .btn *",
         profileSymbol: ".subject__profileSymbol",
         barbaContainer: 'section[data-barba="container"]',
@@ -20,7 +20,7 @@ const CONFIG = {
         cursorFollow: "#cursorFollow",
         postbody: ".postbody",
         forumEl: ".forum",
-        link: ".switcheroo__squircle--button, .switcheroo__squircle--button *, .switcheroo__delete, dfn, a[href]:not(.no-cursor):not(:where(.btn *, .spy *)):not(.btn, .spy), a[href]:not(.no-cursor):not(:where(.btn *, .spy *)) *, .marker:not(.temp), .marker:not(.temp) *",
+        link: ".switcheroo__squircle--button, .switcheroo__squircle--button *, .switcheroo__delete, a[href]:not(.no-cursor):not(:where(.btn *, .spy *)):not(.btn, .spy), a[href]:not(.no-cursor):not(:where(.btn *, .spy *)) *, .marker:not(.temp), .marker:not(.temp) *, .link, .link *",
         map: "#map canvas",
     },
 };
